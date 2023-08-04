@@ -60,13 +60,6 @@ function nearestNeighborTSP(n, points) {
   return { path: optimalPath, weight };
 }
 
-function findOptimalTSP(n, points) {
-  const bruteForceResult = tspBruteForce(n, points);
-  const nearestNeighborResult = nearestNeighborTSP(n, points);
-
-  return { bruteForce: bruteForceResult, nearestNeighbor: nearestNeighborResult };
-}
-
 // Function to generate permutations
 function nextPermutation(arr) {
   let i = arr.length - 2;
@@ -89,19 +82,16 @@ function nextPermutation(arr) {
 }
 
 // Example usage:
-const waypoint1 = [0.0, 0.0];
-const waypoint2 = [3.5, 1.2];
-const waypoint3 = [1.0, 4.8];
+const waypoint1 = [0, 0];
+const waypoint2 = [3, 0];
+const waypoint3 = [0, 4];
 const waypoints = [waypoint1, waypoint2, waypoint3];
 
 const n = waypoints.length;
 
-// Call the findOptimalTSP function to get both results
-const results = findOptimalTSP(n, waypoints);
-
-// Store the results in separate variables
-const bruteForceResult = results.bruteForce;
-const tspResult = results.nearestNeighbor;
+// Get results using the two algorithms directly
+const bruteForceResult = tspBruteForce(n, waypoints);
+const tspResult = nearestNeighborTSP(n, waypoints);
 
 console.log("Brute Force Result:", bruteForceResult);
 console.log("TSP Result:", tspResult);
