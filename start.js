@@ -64,11 +64,7 @@ function findOptimalTSP(n, points) {
   const bruteForceResult = tspBruteForce(n, points);
   const nearestNeighborResult = nearestNeighborTSP(n, points);
 
-  if (bruteForceResult.weight < nearestNeighborResult.weight) {
-    return bruteForceResult.path;
-  } else {
-    return nearestNeighborResult.path;
-  }
+  return { bruteForce: bruteForceResult, nearestNeighbor: nearestNeighborResult };
 }
 
 // Example usage:
@@ -77,5 +73,6 @@ const waypoints = [];
 waypoints.push(newWaypoint);
 
 const n = waypoints.length;
-const optimalPath = findOptimalTSP(n, waypoints);
-console.log("Optimal Path:", optimalPath);
+const results = findOptimalTSP(n, waypoints);
+console.log("Brute Force Result:", results.bruteForce);
+console.log("Nearest Neighbor Result:", results.nearestNeighbor);
