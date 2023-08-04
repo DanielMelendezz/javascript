@@ -73,6 +73,13 @@ const waypoints = [];
 waypoints.push(newWaypoint);
 
 const n = waypoints.length;
+
+// Call the findOptimalTSP function to get both results
 const results = findOptimalTSP(n, waypoints);
-console.log("Brute Force Result:", results.bruteForce);
-console.log("Nearest Neighbor Result:", results.nearestNeighbor);
+
+// Store the results in separate variables
+const bruteForceResult = results.bruteForce;
+const tspResult = results.nearestNeighbor;
+
+console.log("Brute Force Result:", bruteForceResult);
+console.log("TSP Result:", tspResult);
