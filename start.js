@@ -89,9 +89,10 @@ function nextPermutation(arr) {
 }
 
 // Example usage:
-const newWaypoint = [longitude, latitude];
-const waypoints = [];
-waypoints.push(newWaypoint);
+const waypoint1 = [0.0, 0.0];
+const waypoint2 = [3.5, 1.2];
+const waypoint3 = [1.0, 4.8];
+const waypoints = [waypoint1, waypoint2, waypoint3];
 
 const n = waypoints.length;
 
