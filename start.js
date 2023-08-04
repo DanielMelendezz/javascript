@@ -1,5 +1,5 @@
 function calculateDistance(p1, p2) {
-  return Math.sqrt(Math.pow(p2[0] - p1[0], 2) + Math.pow(p2[1] - p1[1], 2));
+  return Math.sqrt(Math.pow(p2.coordinates[0] - p1.coordinates[0], 2) + Math.pow(p2.coordinates[1] - p1.coordinates[1], 2));
 }
 
 function calculatePathWeight(path, points) {
@@ -82,10 +82,24 @@ function nextPermutation(arr) {
 }
 
 // Example usage:
-const waypoint1 = [0, 0];
-const waypoint2 = [3, 0];
-const waypoint3 = [0, 4];
-const waypoints = [waypoint1, waypoint2, waypoint3];
+function coordinatesToString(coordinates) {
+  return `[${coordinates[0]}, ${coordinates[1]}]`;
+}
+
+// Example usage:
+const newWaypoint1 = {
+  coordinates: [0, 0],
+  label: 'Custom Waypoint 1'
+};
+const newWaypoint2 = {
+  coordinates: [3, 0],
+  label: 'Custom Waypoint 2'
+};
+const newWaypoint3 = {
+  coordinates: [0, 4],
+  label: 'Custom Waypoint 3'
+};
+const waypoints = [newWaypoint1, newWaypoint2, newWaypoint3];
 
 const n = waypoints.length;
 
@@ -93,5 +107,17 @@ const n = waypoints.length;
 const bruteForceResult = tspBruteForce(n, waypoints);
 const tspResult = nearestNeighborTSP(n, waypoints);
 
-console.log("Brute Force Result:", bruteForceResult);
-console.log("TSP Result:", tspResult);
+console.log("Brute Force Result:", {
+  path: bruteForceResult.path.map((point) => ({
+    label: point.label,
+    coordinates: coordinatesToString(point.coordinates)
+  })),
+  weight: bruteForceResult.weight
+});
+console.log("TSP Result:", {
+  path: tspResult.path.map((point) => ({
+    label: point.label,
+    coordinates: coordinatesToString(point.coordinates)
+  })),
+  weight: tspResult.weight
+});
