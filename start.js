@@ -67,6 +67,27 @@ function findOptimalTSP(n, points) {
   return { bruteForce: bruteForceResult, nearestNeighbor: nearestNeighborResult };
 }
 
+// Function to generate permutations
+function nextPermutation(arr) {
+  let i = arr.length - 2;
+  while (i >= 0 && arr[i] >= arr[i + 1]) {
+    i--;
+  }
+
+  if (i >= 0) {
+    let j = arr.length - 1;
+    while (j > i && arr[j] <= arr[i]) {
+      j--;
+    }
+    [arr[i], arr[j]] = [arr[j], arr[i]];
+  }
+
+  const reverseTail = arr.splice(i + 1).reverse();
+  arr.push(...reverseTail);
+
+  return i >= 0;
+}
+
 // Example usage:
 const newWaypoint = [longitude, latitude];
 const waypoints = [];
